@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://fb.me/react-0.13.3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+
+      var FriendsContainer = React.createClass({
+        getInitialState: function(){
+          return {
+            name: 'Tyler McGinnis',
+            friends: ['Laurent', 'Lucas', 'Manuel']
+          }
+        },
+
+        addFriend: function(){
+          this.setState({
+            friends: this.state.friends.concat([friend])
+          });
+        },
+
+        render: function(){
+          return(
+            <div>
+              <h3> Name: {this.state.name} </h3>
+              <AddFriend addNew={this.addFriend} />
+              <ShowList names={this.state.friends} />
+            </div>
+          )
+        }
+      });
+
+      
+
+      var ShowList = React.createClass({
+        render: function(){
+          var listItems = this.props.names.map(function(friend){
+            return <li> {friend} </li>
+          });
+          return(
+            <div>
+              <h3> Friends </h3>
+              <ul>
+                {listItems}
+              </ul>
+            </div>
+          )
+        }
+      });
+
+      React.render(< FriendsContainer />, document.getElementById('example'));
+
+    </script>
+  </body>
+</html>
