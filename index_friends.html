@@ -42,6 +42,10 @@
           }
         },
 
+        propTypes: {
+          addNew: React.PropTypes.func.isRequired
+        },
+
         updateNewFriend: function(){
           this.setState({
             newFriend: e.target.value
@@ -66,6 +70,12 @@
       });
 
       var ShowList = React.createClass({
+        getDefaultProps: function(){
+          return{
+            names: []
+          }
+        },
+
         render: function(){
           var listItems = this.props.names.map(function(friend){
             return <li> {friend} </li>
